@@ -1,0 +1,55 @@
+parameters:
+- name: Environment
+  displayName: 'Select an environment'
+  type: string
+  default: 'development'
+  values:
+    - 'development'
+    - 'production'
+
+trigger:
+- main
+
+variables:
+- ${{ if eq(parameters.Environment, 'development') }}:
+  - group: firebase_dev
+- ${{ if eq(parameters.Environment, 'production') }}:
+  - group: firebase_prod
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.17.0'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g firebase-tools
+    npm install next@13.4.18 react@18.2.0 react-dom@18.2.0 --force
+    npm install --force
+  displayName: 'Installing dependencies'
+
+- script: |
+    echo "APP_ENV=${APP_ENV}" > .env
+    echo "NEXT_PUBLIC_FIREBASE_API_KEY=${NEXT_PUBLIC_FIREBASE_API_KEY}" >> .env
+    echo "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN}" >> .env
+    echo "NEXT_PUBLIC_FIREBASE_PROJECT_ID=${NEXT_PUBLIC_FIREBASE_PROJECT_ID}" >> .env
+    echo "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=${NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET}" >> .env
+    echo "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=${NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID}" >> .env
+    echo "NEXT_PUBLIC_FIREBASE_APP_ID=${NEXT_PUBLIC_FIREBASE_APP_ID}" >> .env
+    echo "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}" >> .env
+    echo "NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}" >> .env
+    echo "NEXT_PUBLIC_API_KEY_OPEN_AI=${NEXT_PUBLIC_API_KEY_OPEN_AI}" >> .env
+  displayName: 'Setting enviroment'
+  
+- script: |
+    firebase experiments:enable webframeworks
+  displayName: 'Enabling firebase experiments'
+    
+- script: |
+    echo '$(FIREBASE_SERVICE_ACCOUNT_KEY)' > key.json
+    export GOOGLE_APPLICATION_CREDENTIALS=$(System.DefaultWorkingDirectory)/key.json
+    npm run deploy:$(APP_ENV)
+  displayName: 'Deploying Firebase Hosting on ${{ parameters.Environment }}'

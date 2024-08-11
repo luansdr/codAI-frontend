@@ -1,0 +1,623 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --primary-colors-black-bg: #131619;
+  --colors-primary-purple: #9780E5;
+  --colors-primary-magenta: #E666CC;
+  --primary-gradient-logo: linear-gradient(90deg, rgba(130, 219, 247, 1) 0%, rgba(182, 240, 156, 1) 100%);
+  --primary-gradient-background: linear-gradient(90deg, rgba(48, 69, 201, 1) 0%, rgba(101, 190, 218, 1) 45%, rgba(154, 211, 127, 1) 100%);
+  --colors-primary-green: #B6F09C;
+  --colors-primary-dark: #0D0F10;
+  --colors-primary-white: white;
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --bg-primary-color: #131619;
+  }
+}
+
+.drop-shadow-yellow {
+  box-shadow: 0px 1px 14px 2px #fff23d4d;
+}
+
+.shadow-neon {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.shadow-neon:hover {
+  box-shadow: 0 0 10px #6dfe6d1f, 0 0 20px #114b1130, 0 0 30px #2ad22a53, 0 0 40px #158d155e;
+}
+
+.link-button-login {
+  background-image: var(--primary-gradient-logo);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.abstract-bg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.abstract-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #85ddf124, #9ee6c723, #4b4b4b3c, transparent);
+  background: linear-gradient(to bottom, #3fc3e15d, #3acc8d39, #3a3a3a3c, transparent);
+  animation: fadeIn 20s ease-in-out infinite;
+}
+
+
+.bg-futuristic {
+  animation: glowAnimation 10s infinite
+}
+
+@keyframes glowAnimation {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 15px rgba(0, 153, 255, 0.623);
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 15px rgb(0, 255, 204, 0.623);
+  }
+}
+
+
+
+
+.abstract-bg::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, var(--bg-primary-color), transparent);
+  animation: fadeIn 3s ease-in-out infinite reverse;
+}
+
+@keyframes fadeIn {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.gradient-text {
+  background-image: var(--primary-gradient-background);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-logo {
+  background-image: var(--primary-gradient-logo);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 22px;
+  font-weight: 800;
+  -webkit-text-fill-color: transparent;
+  text-shadow: -1px 1px 14px #93e6706e, -1px 2px 20px #0090ffcf;
+  cursor: pointer;
+  animation: fadeInShadown 5s ease-in-out infinite reverse;
+
+}
+
+
+
+@keyframes fadeInShadown {
+
+  0%,
+  100% {
+    text-shadow: -4px -4px 14px #93e6706e, 5px -3px 20px #0090ffcf;
+  }
+
+  50% {
+    text-shadow: -4px 7px 14px #93e6702c, 9px -6px 20px #0091ff48;
+  }
+}
+
+
+
+.mobile-hide-text {
+  @media (max-width: 640px) {
+    font-size: 0;
+  }
+}
+
+
+html {
+  background-color: var(--bg-primary-color);
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: var(--bg-primary-color);
+}
+
+
+
+grow::-webkit-scrollbar {
+  width: 8px;
+}
+
+.grow::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.grow::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Estilização do scroll para navegadores compatíveis com o novo padrão */
+.grow {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.grow::-webkit-scrollbar {
+  width: 8px;
+}
+
+.grow::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+.grow::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.grow::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Oculta o scroll em dispositivos móveis */
+@media (max-width: 767px) {
+  .grow {
+    -ms-overflow-style: none;
+    /* Para o IE e o Edge */
+    scrollbar-width: none;
+    /* Para navegadores compatíveis com o novo padrão */
+  }
+
+  .grow::-webkit-scrollbar {
+    display: none;
+    /* Para navegadores WebKit */
+  }
+}
+
+/* No seu arquivo CSS ou Tailwind config */
+@keyframes fadein {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.animate-fadein {
+  animation: fadein 1s;
+}
+
+.animate-fadeout {
+  animation: fadeout 1s;
+}
+
+label.custom-select {
+  position: relative;
+  display: inline-block;
+
+}
+
+.custom-select select {
+  display: inline-block;
+  padding: 13px;
+  margin: 0;
+  font: inherit;
+  height: 56px;
+  outline: none;
+  border-radius: 8px;
+  line-height: 1.5;
+  color: #9ca3af;
+  background: #0d0f10;
+  border: 0;
+  transition: color 0.3s;
+  /* Adicione uma transição de cor suave */
+}
+
+/* Estilo do select quando estiver em hover */
+.custom-select select:hover {
+  background: #373e42;
+}
+
+/* Estilo padrão do ícone :after */
+.custom-select:after {
+  content: "▼";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 56px;
+  bottom: 0;
+  font-size: 60%;
+  border-radius: 8px;
+  line-height: 50px;
+  padding: 0 15px;
+  color: #9ca3af;
+  background: #0d0f10;
+  pointer-events: none;
+  transition: color 0.3s;
+  /* Adicione uma transição de cor suave */
+}
+
+/* Estilo do ícone :after quando o select estiver em hover */
+.custom-select:hover:after {
+  color: #ffffff;
+  /* Mude a cor para branco */
+  background: #373e42;
+  /* Mude a cor de fundo para destacar */
+}
+
+.no-pointer-events .custom-select:after {
+  content: none;
+}
+
+
+
+/* glass orb */
+.orb {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 5em;
+  background: #5d5d5d;
+  background-image: radial-gradient(farthest-corner at 34px 14px, #eaee0359 25%, #000000 35%, #000000 100%);
+  box-shadow: 0 0 20px 5px #333333;
+  animation: orb 3s infinite;
+}
+
+.orb:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  top: 2px;
+  left: 2px;
+  background-image: radial-gradient(farthest-corner at 14px 14px, #2e2e2e 15%, #222222 50%, rgba(192, 255, 228, 0) 100%);
+  border-radius: 50%;
+}
+
+/* star shaped shine pattern */
+.shine {
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 1px;
+  height: 16px;
+  background: #cda216;
+  transform: rotate(15deg);
+  box-shadow: 0 0 8px rgba(195, 183, 14, 0.75);
+  animation: shine 10s infinite;
+}
+
+.shine:before,
+.shine:after {
+  content: '';
+  display: block;
+  position: absolute;
+}
+
+.shine:before {
+  top: 2px;
+  left: -2px;
+  width: 1px;
+  height: 16px;
+  background: #bdcc17;
+  transform: rotate(-90deg);
+  box-shadow: 0 0 8px rgba(196, 202, 17, 0.75);
+}
+
+.shine:after {
+  top: 6px;
+  left: -2px;
+  width: 5px;
+  height: 5px;
+  background: #a7950d;
+  transform: rotate(45deg);
+  box-shadow: 0 0 8px 5px rgba(238, 164, 46, 0.75);
+}
+
+/* reflective line */
+.light {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.light:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  top: -75%;
+  left: 0;
+  transform: rotate(45deg);
+  background: rgba(238, 210, 2, 0.5);
+  animation: sheen2 7s infinite;
+}
+
+/* animates orb glow */
+@keyframes orb {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px 2px rgba(247, 242, 83, 0.325);
+  }
+
+  50% {
+    box-shadow: 0 0 10px 4px #b2b4256b;
+  }
+}
+
+/* rotates shine */
+@keyframes shine {
+  0% {
+    opacity: 0;
+  }
+
+  34% {
+    opacity: 0;
+    transform: rotate(15deg);
+  }
+
+  40% {
+    opacity: 0.6;
+    transform: rotate(620deg);
+  }
+
+  48%,
+  100% {
+    opacity: 0;
+    transform: rotate(635deg);
+  }
+}
+
+/* moves light reflection */
+@keyframes sheen2 {
+
+  0%,
+  100% {
+    top: -75%;
+    left: 15%;
+    opacity: 0;
+    width: 2px;
+  }
+
+  1% {
+    opacity: 1;
+  }
+
+  10% {
+    width: 24px;
+  }
+
+  11%,
+  18% {
+    top: 75%;
+    left: 50%;
+    width: 2px;
+    opacity: 0;
+  }
+
+  20% {
+    top: -75%;
+    left: 15%;
+    opacity: 0;
+    width: 1px;
+  }
+
+  21% {
+    opacity: 0.75;
+  }
+
+  30% {
+    width: 6px;
+  }
+
+  31%,
+  98% {
+    top: 75%;
+    left: 50%;
+    width: 2px;
+    opacity: 0;
+  }
+}
+
+@keyframes bounce-3s {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce-3s {
+  animation: bounce-3s 3s ease-in-out;
+}
+
+
+.container-2 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+/* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #090707;
+}
+.dank-ass-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dank-ass-loader .row {
+  display: flex;
+}
+.arrow {
+  width: 0;
+  height: 0;
+  margin: 0 -6px;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 21.6px solid #93e670ff;
+  animation: blink 1s infinite;
+  filter: drop-shadow(0 0 18px #93e670ff);
+}
+.arrow.down {
+  transform: rotate(180deg);
+}
+.arrow.outer-1 {
+  animation-delay: -0.0555555556s;
+}
+.arrow.outer-2 {
+  animation-delay: -0.1111111111s;
+}
+.arrow.outer-3 {
+  animation-delay: -0.1666666667s;
+}
+.arrow.outer-4 {
+  animation-delay: -0.2222222222s;
+}
+.arrow.outer-5 {
+  animation-delay: -0.2777777778s;
+}
+.arrow.outer-6 {
+  animation-delay: -0.3333333333s;
+}
+.arrow.outer-7 {
+  animation-delay: -0.3888888889s;
+}
+.arrow.outer-8 {
+  animation-delay: -0.4444444444s;
+}
+.arrow.outer-9 {
+  animation-delay: -0.5s;
+}
+.arrow.outer-10 {
+  animation-delay: -0.5555555556s;
+}
+.arrow.outer-11 {
+  animation-delay: -0.6111111111s;
+}
+.arrow.outer-12 {
+  animation-delay: -0.6666666667s;
+}
+.arrow.outer-13 {
+  animation-delay: -0.7222222222s;
+}
+.arrow.outer-14 {
+  animation-delay: -0.7777777778s;
+}
+.arrow.outer-15 {
+  animation-delay: -0.8333333333s;
+}
+.arrow.outer-16 {
+  animation-delay: -0.8888888889s;
+}
+.arrow.outer-17 {
+  animation-delay: -0.9444444444s;
+}
+.arrow.outer-18 {
+  animation-delay: -1s;
+}
+.arrow.inner-1 {
+  animation-delay: -0.1666666667s;
+}
+.arrow.inner-2 {
+  animation-delay: -0.3333333333s;
+}
+.arrow.inner-3 {
+  animation-delay: -0.5s;
+}
+.arrow.inner-4 {
+  animation-delay: -0.6666666667s;
+}
+.arrow.inner-5 {
+  animation-delay: -0.8333333333s;
+}
+.arrow.inner-6 {
+  animation-delay: -1s;
+}
+@keyframes blink {
+  0% {
+    opacity: 0.1;
+ }
+  30% {
+    opacity: 1;
+ }
+  100% {
+    opacity: 0.1;
+ }
+}
